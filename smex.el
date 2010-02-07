@@ -1,6 +1,7 @@
 ;;; smex.el --- A smart M-x enhancement for Emacs.
 ;; (C) 2009 Cornelius Mika
 ;; Licensed under the same terms as Emacs.
+;; Version: 0.1
 
 ;;; Quick Start:
 ;; (require 'smex)
@@ -45,6 +46,7 @@ Must be set before initializing Smex."
 ;;--------------------------------------------------------------------------------
 ;; Smex Interface
 
+;;;###autoload
 (defun smex (&optional commands)
   (interactive)
   (unless commands (setq commands smex-ido-cache))
@@ -63,6 +65,7 @@ Must be set before initializing Smex."
         (run-at-time 0.01 nil (lambda (cmd) (setq last-repeatable-command cmd))
                      chosen-item)))))
 
+;;;###autoload
 (defun smex-major-mode-commands ()
   "Like `smex', but limited to commands that are relevant to the active major mode."
   (interactive)
@@ -131,6 +134,7 @@ Must be set before initializing Smex."
   (smex-save-history)
   (smex-rebuild-cache))
 
+;;;###autoload
 (defun smex-update-and-run ()
   (interactive)
   (smex-update)
@@ -151,6 +155,7 @@ This function provides temporary means to aid the transition."
                          smex-save-file legacy-save-file))
         (setq smex-save-file legacy-save-file)))))
 
+;;;###autoload
 (defun smex-initialize ()
   (interactive)
   (unless ido-mode (smex-initialize-ido))
@@ -395,3 +400,5 @@ sorted by frequency of use."
     (beginning-of-buffer)))
 
 (provide 'smex)
+
+;;; smex.el ends here
